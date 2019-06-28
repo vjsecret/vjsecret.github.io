@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh_TW">
   <head>
     <!-- Required meta tags -->
@@ -12,56 +12,99 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <title>Hello, world!</title>
-    <style>
-		.row{
-				flex-wrap: nowrap;
-			}
-	.footer{
-		background-color:#CCC;
-		color:#FFF;
-		position:fixed;
-		bottom:0px;
-		left:0px;	
-		font:12px;
-		width:100%;
-		text-align:center;
-		}
-    </style>
+    <title>Home</title>
   </head>
   <body>
-    <!--<h1>Hello, world!</h1>-->
-	<div class="row">
-        <div class="col-md-8">
-            <ul class="nav nav-tabs navbar-fixed-top">
-              <li class="nav-item active">
-                <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
+<header>
+<!--https://codeday.me/bug/20170911/70072.html bootstrap3-->
+<div class="container">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark"><!--<nav class="navbar navbar-expand-md fixed-top font-weight-bold">-->
+		<a class="navbar-brand" href="/index"><img class="mylogo img-responsive" src="..\static\images\coffee\bean3.png" alt="LOGO" style="width:60px;">  </img>
+		</a>
+		<!--<div class="collapse navbar-collapse" id="navbarContent"><!--<div class="row">-->
+		<!--<div class="col-md-8">-->
+			<ul class="navbar-nav flex-row-reverse"><!--<ul class="navbar-nav mr-auto"><ul class="nav nav-tabs navbar-fixed-top">-->
+			  <li class="nav-item">
+				<a class="nav-link" href="#"></i>Home<!--<span class="sr-only">(current)--></span></a>
+			  </li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/car"></i>購物車</a>
+					<button class="btn btn-outline-success my-sm-0" id="btnLogin">
+					<a class="nav-link" href="/login">
+						&nbsp;<i class="fas fa-sign-in-alt" >會員登入</a></button>
+					<button class="btn btn-outline-success my-sm-0" id="liSignUp">
+					<a class="nav-link" href="/register">
+				</li>
+			</ul>
+	<!--</div>-->
+	</nav>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <!--<a class="navbar-brand" href="#">遊戲列表</a>-->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+		<div class="col-md-4 collapse navbar-collapse" id="mynav">
+
+			<ul class="nav nav-tabs">             
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  作品
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="https://firebasestorage.googleapis.com/v0/b/first20190109.appspot.com/o/index.html?alt=media&token=8b207ec8-ebd9-4357-9c57-95a2d5384c85">Firebase</a>
+				  <a class="dropdown-item" href="#">Another action</a>
+				  <div class="dropdown-divider"></div>
+				  <a class="dropdown-item" href="#">Something else here</a>
+					  <a class="dropdown-item" href="#">Action</a>
+					  <a class="nav-link dropdown-toggle" href="#" id="Anotheraction" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Anotheraction
+					  </a>
+						  <div class="dropdown-menu" aria-labelledby="Anotheraction">
+						  <a class="dropdown-item" href="#">Action</a>
+						  <a class="dropdown-item" href="#">Another action</a>
+						  </div>
+				</li>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Dropdown1
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="#">Action</a>
+				  <a class="dropdown-item" href="#">Another action</a>
+				  <div class="dropdown-divider"></div>
+				  <a class="dropdown-item" href="#">Something else here</a>
+				</div>
+				</li> 
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Dropdown2
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="#">Action</a>
+				  <a class="dropdown-item" href="#">Another action</a>
+				  <div class="dropdown-divider"></div>
+				  <a class="dropdown-item" href="#">Something else here</a>
+				</div>
+				</li> 
+				</div>
+			</ul>
+
+		</div>
+</nav>
+</div>
         
-              <li class="nav-item" id="mana" style="display:none;">
-                <a class="nav-link" href="mycrud">商品管理</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="car">購物車</a>
-              </li>
-              <li class="nav-item" id="btnLogout" style="display:none;">
-                <a class="nav-link">會員登出</a>
-              </li>
-             </ul>
-        </div>
-        <div class="col-md-4"> 
-        <input type="Email" id="txtEmail" placeholder="Enter Email"><br>
-        <input type="password" id="txtPwd" placeholder="Enter Password"><br>
-        
-        <button class="btn btn-outline-success my-sm-0" id="btnLogin">
-        <a class="nav-link">會員登入</a></button>
-        <button class="btn btn-outline-success my-sm-0" id="liSignUp">
-        <a class="nav-link">註冊</a></button>
-        </div>                           
-
-	</div>
-
-
-<div class="footer" id="footer">版權所有，翻拷必究</footer>
+</header>
+<footer class="navbar-fixed-bottom">
+  <div class="container">
+    <div class="nav-item">
+        <a class="btn btn-outline-light" rel="nofollow" target="_blank">
+            &nbsp;<i class="fab fa-github"></i>&nbsp; 版權所有，翻拷必究
+        </a>
+    </div>
+  </div>
+</footer>
   </body>
 </html>
