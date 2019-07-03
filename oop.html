@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html lang="zh_TW">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>OOP</title>
+  </head>
+  <body>
+<h1 id="pslogan">OOP</h1>
+<hr>
+<button id="innerHTML" onClick="A('鳴人', 18, 15, 20)">鳴人</button>
+<button id="innerText" onClick="B('佐助', 0, 15, 20)">佐助</button>
+<button id="TextContent" onClick="C('Boss', 11, 15, 20)">Boss</button>
+              
+<div id="demo"></div>
+<div id="demo2">
+
+<script>
+	//題目:創建四個小角色，顯示他們施放技能所造成的傷害
+	//題目設定:
+	//每個人使用的技能不同: 鳴人使用螺旋丸跟火球術，佐助使用水遁；Boss全部使用；小櫻使用火球術
+	//每個人對每個術的熟練度不同，所以對每個術擁有不同係數: val1是螺旋丸係數，val2是火球術係數，val3是水遁係數；'鳴人', 18, 15, 20;'佐助', 0, 15, 20;'Boss', 11, 15, 20
+	//狀況一:如果今天要修改角色對術的熟練度係數；使用A,B,C跟tmpA,tmpB,tmpC哪個方便且比較不會漏掉修改?
+	//狀況二:如果今天要更改遊戲平衡所以要修改各技能係數；使用A,B,C跟tmpA,tmpB,tmpC哪個方便且比較不會漏掉修改?
+	var demo=document.getElementById('demo');
+	var demo2=document.getElementById('demo2');
+	var innerHTML=document.getElementById('innerHTML');
+	var innerText=document.getElementById('innerText');
+	var TextContent=document.getElementById('TextContent');
+
+	//-------------------------------------技能能造成多少傷害分開定義
+	function skill_cirle(cirle, fire, water){
+		var total=cirle*50;
+		//demo.innerHTML="<h3>螺旋丸對敵人造成"+total+"傷害</h3>";
+		return total
+		//alert(demo2.innerHTML);
+	}
+	function skill_fire(cirle, fire, water){
+		var total=fire*30;
+		//demo.innerHTML="<h3>火球術對敵人造成"+total+"傷害</h3>";
+		return total
+	}	
+	function skill_water(cirle, fire, water){
+		var total=water*20;
+		//demo.innerHTML="<h3>水遁對敵人造成"+total+"傷害</h3>";
+		return total
+	}
+	//全部使用
+	function skill_all(cirle, fire, water){
+		//oop: func可以重複被利用
+		a=skill_cirle(cirle, fire, water);
+		b=skill_fire(cirle, fire, water);
+		c=skill_water(cirle, fire, water);
+		total=a+b+c;
+		//var total=cirle*50+fire*30+water*20; 
+		//demo.innerHTML="<h3>技能對敵人造成"+total+"傷害</h3>";
+		return total
+	}
+
+//方法一:OOP-------------------------------------basic function: name是人名，val1是螺旋丸係數，val2是火球術係數，val3是水遁係數；	
+	function A(name, val1, val2, val3){
+		skll_1=skill_cirle(val1, val2, val3);
+		skll_2=skill_fire(val1, val2, val3);
+		total=skll_1+skll_2;
+		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+	}
+	
+	//-------------------------------------要新建角色只需複製basic function做小修改即可:
+	//新增佐助使用火球術+水遁=>只需複製functionA然後把skill_cirle改成skill_water
+	function B(name, val1, val2, val3){
+		skll_1=skill_water(val1, val2, val3);
+		skll_2=skill_fire(val1, val2, val3);
+		total=skll_1+skll_2;
+		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+	}
+
+	function C(name, val1, val2, val3){
+		skll_1=skill_all(val1, val2, val3);	
+		skll_2=0;
+		total=skll_1+skll_2;
+		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+	}
+
+	//新增小櫻使用火球術=>只需複製functionA做修改
+	function D(name, val1, val2, val3){
+		total=skill_fire(val1, val2, val3);
+		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+	}
+
+	
+//方法二:通通寫再一起
+	function tmpA(){// '鳴人', 18, 15, 20		
+		total= 18*50+15*30;
+		demo.innerHTML="<h3>鳴人對敵人造成"+total+"傷害</h3>";
+	}
+
+	function tmpB(){// '佐助', 0, 15, 20
+		total= 15*30+20*20;
+		demo.innerHTML="<h3>佐助對敵人造成"+total+"傷害</h3>";
+	}
+	function tmpC(){// 'Boss', 11, 15, 20
+		total= 11*50+15*30+20*20;
+		demo.innerHTML="<h3>佐助對敵人造成"+total+"傷害</h3>";
+	}
+
+</script>
+  </body>
+</html>
