@@ -15,103 +15,114 @@
     <title>OOP</title>
   </head>
   <body>
-<h1 id="pslogan">OOP</h1>
+<h2">原版設定:</h2><br>
+<p>(1)三個角色，顯示他們施放技能所造成的傷害，每個人攻擊時使用的技能不同: 鳴人使用螺旋丸跟火球術，佐助使用火球術跟水遁，小櫻使用火球術；</p>
+<p>(2)每個術能造成的傷害=技能熟練度*術的基礎攻擊係數(螺旋丸:50，火球術:30，水遁:20，)</p>
+<p>(3)每個人對每個術的熟練度不同:</p>
+<p>(螺旋丸-鳴人:18)</p>
+<p>(火球術-鳴人:15，佐助:15，小櫻11)</p>
+<p>(水遁-佐助:20)</p>
 <hr>
-<button id="innerHTML" onClick="A('鳴人', 18, 15, 20)">鳴人</button>
+<h2>實做法一:量身訂做計算每個人攻擊造成的傷害的function</h2>
+<button id="innerHTML" onClick="A('鳴人', 18, 15, 0)">鳴人</button>
 <button id="innerText" onClick="B('佐助', 0, 15, 20)">佐助</button>
-<button id="TextContent" onClick="C('Boss', 11, 15, 20)">Boss</button>
-              
+<button id="TextContent" onClick="C('小櫻', 0, 11, 0)">小櫻</button>
 <div id="demo"></div>
-<div id="demo2">
-
+<div id="demo2"></div>
+<br>
+<h2>實做法二-OOP:function可重複被使用-只需使用同一個function attack</h2>
+<button onClick="attack('鳴人', 18, 15, 0)">鳴人</button>
+<button onClick="attack('佐助', 0, 15, 20)">佐助</button>
+<button onClick="attack('小櫻', 0, 11, 0)">小櫻</button>
+<div id="demo3"></div>
+<hr>
+<h3>討論一:oop方便擴充、重複利用</h3>
+<p>例子-改版一:新增角色Boss全部使用，熟練度:螺旋丸:11，火球術:15，水遁:20；哪個方法比較容易方便且比較不會漏掉修改?</p>
+<p>解答:</p>
+<p>方法二可直接使用現有的attack再填入係數就好，方法一需要再重新寫一個function，基礎實現方法需完全重寫
+<button onClick="attack('Boss', 11, 15, 20)">Boss</button></p>
+<h3>討論二:oop方便維護、修改</h3>
+<p>例子-改版二:(1)修改每個術能造成的傷害:螺旋丸從50->15，火球術從30->18，水遁從20->13(2)如果目前角色有200個，比較基礎實現方法跟實做法二，哪個方法比較容易方便且比較不會漏掉修改?</p>
+<p>解答:</p>
+<p>方法二因為比較有系統性的設計，所以可以很快的找到想要修改的點做更改，且只需更改三個地方。基礎實現方法需仔細比對哪筆資料屬於螺旋丸、火球術、水遁的係數，如果角色有200個，那要改的地方就有200*3
 <script>
-	//題目:創建四個小角色，顯示他們施放技能所造成的傷害
-	//題目設定:
-	//每個人使用的技能不同: 鳴人使用螺旋丸跟火球術，佐助使用水遁；Boss全部使用；小櫻使用火球術
-	//每個人對每個術的熟練度不同，所以對每個術擁有不同係數: val1是螺旋丸係數，val2是火球術係數，val3是水遁係數；'鳴人', 18, 15, 20;'佐助', 0, 15, 20;'Boss', 11, 15, 20
-	//狀況一:如果今天要修改角色對術的熟練度係數；使用A,B,C跟tmpA,tmpB,tmpC哪個方便且比較不會漏掉修改?
-	//狀況二:如果今天要更改遊戲平衡所以要修改各技能係數；使用A,B,C跟tmpA,tmpB,tmpC哪個方便且比較不會漏掉修改?
 	var demo=document.getElementById('demo');
 	var demo2=document.getElementById('demo2');
-	var innerHTML=document.getElementById('innerHTML');
-	var innerText=document.getElementById('innerText');
-	var TextContent=document.getElementById('TextContent');
 
-	//-------------------------------------技能能造成多少傷害分開定義
-	function skill_cirle(cirle, fire, water){
-		var total=cirle*50;
-		//demo.innerHTML="<h3>螺旋丸對敵人造成"+total+"傷害</h3>";
-		return total
+//將每個技能能造成多少傷害分開定義
+	function skill_cirle(value){//螺旋丸
+		var hurt=value*50;
+		//demo.innerHTML="<p>螺旋丸對敵人造成"+hurt+"傷害</p>";
+		return hurt
 		//alert(demo2.innerHTML);
 	}
-	function skill_fire(cirle, fire, water){
-		var total=fire*30;
-		//demo.innerHTML="<h3>火球術對敵人造成"+total+"傷害</h3>";
-		return total
+	function skill_fire(value){//火球術
+		var hurt=value*30;
+		//demo.innerHTML="<p>火球術對敵人造成"+hurt+"傷害</p>";
+		return hurt
 	}	
-	function skill_water(cirle, fire, water){
-		var total=water*20;
-		//demo.innerHTML="<h3>水遁對敵人造成"+total+"傷害</h3>";
-		return total
-	}
-	//全部使用
-	function skill_all(cirle, fire, water){
-		//oop: func可以重複被利用
-		a=skill_cirle(cirle, fire, water);
-		b=skill_fire(cirle, fire, water);
-		c=skill_water(cirle, fire, water);
-		total=a+b+c;
-		//var total=cirle*50+fire*30+water*20; 
-		//demo.innerHTML="<h3>技能對敵人造成"+total+"傷害</h3>";
-		return total
+	function skill_water(value){//水遁
+		var hurt=value*20;
+		//demo.innerHTML="<p>水遁對敵人造成"+hurt+"傷害</p>";
+		return hurt
 	}
 
-//方法一:OOP-------------------------------------basic function: name是人名，val1是螺旋丸係數，val2是火球術係數，val3是水遁係數；	
+
+//實做法一:量身訂做(=寫死)計算每個人攻擊造成的傷害，val1是螺旋丸係數，val2是火球術係數，val3是水遁係數；(若與方法二比較算是較差的oop)
 	function A(name, val1, val2, val3){
-		skll_1=skill_cirle(val1, val2, val3);
-		skll_2=skill_fire(val1, val2, val3);
+		skll_1=skill_cirle(val1);
+		skll_2=skill_fire(val2);
 		total=skll_1+skll_2;
-		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+		demo.innerHTML="<p>"+name+"對敵人造成"+total+"傷害</p>";
 	}
 	
-	//-------------------------------------要新建角色只需複製basic function做小修改即可:
-	//新增佐助使用火球術+水遁=>只需複製functionA然後把skill_cirle改成skill_water
 	function B(name, val1, val2, val3){
-		skll_1=skill_water(val1, val2, val3);
-		skll_2=skill_fire(val1, val2, val3);
-		total=skll_1+skll_2;
-		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+		skll_3=skill_water(val3);
+		skll_2=skill_fire(val2);
+		total=skll_3+skll_2;
+		demo.innerHTML="<p>"+name+"對敵人造成"+total+"傷害</p>";
 	}
-
 	function C(name, val1, val2, val3){
-		skll_1=skill_all(val1, val2, val3);	
-		skll_2=0;
-		total=skll_1+skll_2;
-		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+		skll_2=skill_fire(val2);
+		demo.innerHTML="<p>"+name+"對敵人造成"+skll_2+"傷害</p>";
 	}
-
-	//新增小櫻使用火球術=>只需複製functionA做修改
 	function D(name, val1, val2, val3){
-		total=skill_fire(val1, val2, val3);
-		demo.innerHTML="<h3>"+name+"對敵人造成"+total+"傷害</h3>";
+		skll_1=skill_cirle(val1);
+		skll_2=skill_fire(val2);
+		skll_3=skill_water(val3);
+		total=skll_1+skll_2+skll_3;
+		demo.innerHTML="<p>"+name+"對敵人造成"+total+"傷害</p>";
 	}
 
-	
-//方法二:通通寫再一起
-	function tmpA(){// '鳴人', 18, 15, 20		
+//實做法二: function可以重複被利用oop	
+	function attack(name, cirle, fire, water){
+		hurt_a=skill_cirle(cirle);
+		hurt_b=skill_fire(fire);
+		hurt_c=skill_water(water);
+		total=hurt_a+hurt_b+hurt_c;
+		//var total=cirle*50+fire*30+water*20; 
+		demo3.innerHTML="<p>"+name+"對敵人造成"+total+"傷害</p>";
+		return total
+	}
+
+//基礎實現方法:寫死是最差的實做方式
+	function tmpA(){// '鳴人', 18, 15, 0		
 		total= 18*50+15*30;
-		demo.innerHTML="<h3>鳴人對敵人造成"+total+"傷害</h3>";
+		demo.innerHTML="<p>鳴人對敵人造成"+total+"傷害</p>";
 	}
 
 	function tmpB(){// '佐助', 0, 15, 20
 		total= 15*30+20*20;
-		demo.innerHTML="<h3>佐助對敵人造成"+total+"傷害</h3>";
+		demo.innerHTML="<p>佐助對敵人造成"+total+"傷害</p>";
 	}
-	function tmpC(){// 'Boss', 11, 15, 20
+	function tmpC(){// '小櫻', 0, 11, 0
+		total= 11*30;
+		demo.innerHTML="<p>佐助對敵人造成"+total+"傷害</p>";
+	}
+	function tmpD(){// 'Boss', 11, 15, 20
 		total= 11*50+15*30+20*20;
-		demo.innerHTML="<h3>Boss對敵人造成"+total+"傷害</h3>";
+		demo.innerHTML="<p>Boss對敵人造成"+total+"傷害</p>";
 	}
-
 </script>
   </body>
 </html>
