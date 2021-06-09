@@ -1,7 +1,7 @@
 GitHub Pages架設靜態網站並綁定網域: https://www.youtube.com/watch?v=bU0f1IvUcZA, https://medium.com/@NorthBei/%E4%B8%8D%E7%94%A8%E6%87%82git%E4%B9%9F%E8%83%BD%E7%94%A8github-pages%E6%9E%B6%E8%A8%AD%E9%9D%9C%E6%85%8B%E7%B6%B2%E7%AB%99%E4%B8%A6%E7%B6%81%E5%AE%9A%E7%B6%B2%E5%9F%9F-c60c02bc470c
 NCTU Domain免費網域申請教學: https://medium.com/@NorthBei/nctu-domain%E5%85%8D%E8%B2%BB%E7%B6%B2%E5%9F%9F%E7%94%B3%E8%AB%8B%E6%95%99%E5%AD%B8-b629fdaaad90
 
-
+<font color=#00ffff size=72>color=#00ffff</font>
 網站規劃
 menu: comic， article， store，序號兌換，我的最愛(comic， article，商品)，搜尋功能
 (1)每一頁的首頁顯示排行榜；顯示所有商品小圖示，預設以XXX分類排序；搜尋功能
